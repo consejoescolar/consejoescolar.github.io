@@ -502,7 +502,10 @@ function renderSuggestions() {
                     <textarea id="notes-${escapeHtml(item.id)}" class="item-notes" maxlength="5000"
                         placeholder="Añade aquí notas internas…">${escapeHtml(item.private_notes || "")}</textarea>
                 </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
                 <button type="button" class="save-item">Guardar</button>
+                <button type="button" class="danger delete-item">🗑️ Borrar</button>
+                </div>
             </div>
             <p class="small-note">Las notas privadas no se muestran en el buzón público.</p>
         </article>
