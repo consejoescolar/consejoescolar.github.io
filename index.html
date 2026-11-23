@@ -517,6 +517,12 @@ function renderSuggestions() {
             await saveSuggestion(article, button);
         });
     });
+    list.querySelectorAll(".delete-item").forEach(button => {
+    button.addEventListener("click", async () => {
+        const article = button.closest(".suggestion");
+        await deleteSuggestion(article, button);
+        });
+    });
 }
 
 async function saveSuggestion(article, button) {
