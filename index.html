@@ -523,6 +523,44 @@ async function saveSuggestion(article, button) {
     const originalText = button.textContent;
     button.disabled = true;
     button.textContent = "Guardando…";
+    async function deleteSuggestion(article, button) {
+    const id = article.dataset.id;
+
+    const confirmed = confirm(
+        "¿Seguro que quieres borrar esta sugerencia?\n\nEsta acción no se puede deshacer."
+    );
+
+    if (!confirmed) return;
+
+    button.disabled = true;
+    button.textContent = "Borrando…";
+
+    try {
+        const client = configurationReady();
+
+        const { error } = await client
+            .from("suggestions")
+            .delete()
+            .eq("id", id);
+
+        if (error) throw error;
+
+        currentSuggestions = currentSuggestions.filter(item => item.id !== id);
+
+        renderSuggestions();
+
+    } catch (err) {
+        console.error("Error borrando sugerencia:", err);
+
+        showMessage(
+            document.getElementById("adminError"),
+            "No se ha podido borrar la sugerencia. Comprueba los permisos."
+        );
+
+        button.disabled = false;
+        button.textContent = "🗑️ Borrar";
+    }
+}
 
     try {
         const client = configurationReady();
