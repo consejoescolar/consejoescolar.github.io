@@ -526,12 +526,94 @@ function renderSuggestions() {
 }
 
 async function saveSuggestion(article, button) {
+    async function saveSuggestion(article, button) {
     const id = article.dataset.id;
     const status = article.querySelector(".item-status").value;
     const private_notes = article.querySelector(".item-notes").value.trim();
-    const originalText = button.textContent;
+
     button.disabled = true;
     button.textContent = "Guardando…";
+
+    try {
+        const client = configurationReady();
+
+        const { error } = await client
+            .from("suggestions")
+            .update({
+                status,
+                private_notes,
+                updated_at: new Date().toISOString()
+            })
+            .eq("id", id);
+
+        if (error) throw error;
+
+        const item = currentSuggestions.find(row => row.id === id);
+
+        if (item) {
+            item.status = status;
+            item.private_notes = private_notes;
+        }
+
+        button.textContent = "Guardado ✓";
+
+    } catch (err) {
+        console.error("Error guardando:", err);
+
+        showMessage(
+            document.getElementById("adminError"),
+            "No se han podido guardar los cambios."
+        );
+
+        button.textContent = "Guardar";
+
+    } finally {
+        button.disabled = false;
+    }
+}
+
+
+// FUNCIÓN PARA BORRAR SUGERENCIAS
+async function deleteSuggestion(article, button) {
+    const id = article.dataset.id;
+
+    const confirmed = confirm(
+        "¿Seguro que quieres borrar esta sugerencia?\n\nEsta acción no se puede deshacer."
+    );
+
+    if (!confirmed) return;
+
+    button.disabled = true;
+    button.textContent = "Borrando…";
+
+    try {
+        const client = configurationReady();
+
+        const { error } = await client
+            .from("suggestions")
+            .delete()
+            .eq("id", id);
+
+        if (error) throw error;
+
+        currentSuggestions = currentSuggestions.filter(
+            item => item.id !== id
+        );
+
+        renderSuggestions();
+
+    } catch (err) {
+        console.error("Error borrando:", err);
+
+        showMessage(
+            document.getElementById("adminError"),
+            "No se ha podido borrar la sugerencia. Comprueba los permisos de Supabase."
+        );
+
+        button.disabled = false;
+        button.textContent = "🗑️ Borrar";
+    }
+}
     async function deleteSuggestion(article, button) {
     const id = article.dataset.id;
 
