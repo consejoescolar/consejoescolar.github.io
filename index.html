@@ -87,8 +87,17 @@ button.danger:hover { background: #8f1d14; }
 .info p { font-size: 14px; color: var(--muted); }
 footer { text-align: center; padding: 30px 20px; background: var(--dark); color: #dbeafe; font-size: 13px; }
 footer p + p { margin-top: 5px; color: #9fb5d8; }
-.footer-admin { margin-top: 14px; background: transparent; border: 1px solid #9fb5d8; color: #dbeafe; font-size: 12px; padding: 8px 13px; }
-.footer-admin:hover { background: #ffffff18; }
+.admin-access-button {
+    width: 100%;
+    margin-top: 0;
+    background: #142747;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+}
+.admin-access-button:hover { background: #2457d6; }
 .hidden { display: none !important; }
 .admin-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
 .admin-top h2 { margin: 0; }
@@ -182,8 +191,13 @@ footer p + p { margin-top: 5px; color: #9fb5d8; }
         </div>
     </section>
 
-    <section class="info" id="infoSection">
-        <article><span>📬</span><h3>Escuchamos tus ideas</h3><p>Todas las propuestas podrán ser revisadas por el Consejo Escolar.</p></article>
+    <div style="margin: 0 0 25px;">
+        <button class="admin-access-button" id="adminAccessButton" type="button">
+            🔐 Acceso de administradores
+        </button>
+    </div>
+
+    <section class="info" id="infoSection">        <article><span>📬</span><h3>Escuchamos tus ideas</h3><p>Todas las propuestas podrán ser revisadas por el Consejo Escolar.</p></article>
         <article><span>🏫</span><h3>Mejoramos juntos</h3><p>Las propuestas que correspondan podrán trasladarse al Ayuntamiento.</p></article>
     </section>
 
@@ -230,8 +244,9 @@ footer p + p { margin-top: 5px; color: #9fb5d8; }
 <footer>
     <p><strong>Consejo Escolar</strong></p>
     <p>Un colegio mejor empieza escuchando a todos.</p>
-    <button class="footer-admin" id="adminAccessButton" type="button">Acceso de administradores</button>
-</footer><script>
+</footer>
+
+<script>
 /*
  * CONFIGURACIÓN:
  * 1. Sustituye SUPABASE_PUBLISHABLE_KEY por tu clave sb_publishable_...
