@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Consejo Escolar | Buzón de Sugerencias</title>
+
+<style>
+:root {
+    --primary: #2457d6;
+    --dark: #142747;
+    --background: #f3f6fc;
+    --text: #1e293b;
+    --muted: #64748b;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #142747, #2457d6);
+    color: white;
+    padding: 20px 8%;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #ffffff20;
+    display: grid;
+    place-items: center;
+    font-size: 27px;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.brand small {
+    display: block;
+    font-size: 12px;
+    color: #cbdaf7;
+    font-weight: 400;
+}
+
+.hero {
+    max-width: 850px;
+    margin: auto;
+    padding: 65px 20px 75px;
+    text-align: center;
+}
+
+.hero .tag {
+    display: inline-block;
+    padding: 6px 15px;
+    border: 1px solid #ffffff50;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(34px, 6vw, 52px);
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    color: #dbeafe;
+    font-size: 17px;
+    max-width: 650px;
+    margin: auto;
+}
+
+main {
+    max-width: 850px;
+    margin: -25px auto 60px;
+    padding: 0 20px;
+}
+
+.card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 12px 40px #14274712;
+}
+
+.card h2 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--muted);
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d5dce8;
+    border-radius: 10px;
+    font: inherit;
+    color: var(--text);
+    background: white;
+    margin-bottom: 22px;
+    transition: .2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px #2457d620;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.counter {
+    text-align: right;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: -17px;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: var(--primary);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: #1946b6;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.privacy {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eff6ff;
+    color: #254a85;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.success, .error {
+    display: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.info article {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+}
+
+.info article span {
+    font-size: 25px;
+}
+
+.info h3 {
+    margin: 8px 0 5px;
+}
+
+.info p {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--dark);
+    color: #dbeafe;
+    font-size: 13px;
+}
+
+footer p + p {
+    margin-top: 5px;
+    color: #9fb5d8;
+}
+
+@media(max-width: 600px) {
+    header {
+        padding: 18px 20px;
+    }
+
+    .hero {
+        padding: 50px 10px 65px;
+    }
+
+    .card {
+        padding: 23px;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">🎓</div>
+        <div class="brand">
+            CONSEJO ESCOLAR
+            <small>Participación y propuestas</small>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <span class="tag">TU OPINIÓN IMPORTA</span>
+
+        <h1>¡Queremos escucharte!</h1>
+
+        <p>
+            Este es el espacio para compartir tus ideas,
+            propuestas y sugerencias para mejorar nuestro
+            colegio. Cada opinión cuenta.
+        </p>
+    </section>
+</header>
+
+<main>
+
+    <section class="card">
+
+        <h2>💡 Buzón de sugerencias</h2>
+
+        <p class="subtitle">
+            Cuéntanos qué podemos mejorar.
+        </p>
+
+        <form id="suggestionForm">
+
+            <label for="category">Categoría</label>
+
+            <select id="category" required>
+                <option value="">Selecciona una categoría</option>
+                <option>Instalaciones</option>
+                <option>Limpieza y mantenimiento</option>
+                <option>Patio y zonas comunes</option>
+                <option>Material escolar</option>
+                <option>Actividades y eventos</option>
+                <option>Convivencia</option>
+                <option>Otras propuestas</option>
+            </select>
+
+            <label for="title">Título de tu propuesta</label>
+
+            <input
+                type="text"
+                id="title"
+                maxlength="100"
+                placeholder="Ej. Mejorar las instalaciones del patio"
+                required
+            >
+
+            <label for="message">Describe tu sugerencia</label>
+
+            <textarea
+                id="message"
+                maxlength="2000"
+                placeholder="Explícanos tu idea con el mayor detalle posible..."
+                required
+            ></textarea>
+
+            <div class="counter">
+                <span id="count">0</span>/2000 caracteres
+            </div>
+
+            <button type="submit" id="submitButton">
+                Enviar sugerencia →
+            </button>
+
+        </form>
+
+        <div class="success" id="success">
+            <strong>¡Gracias por participar!</strong>
+            <p>Tu sugerencia se ha enviado correctamente.</p>
+        </div>
+
+        <div class="error" id="error">
+            No se ha podido enviar la sugerencia.
+            Inténtalo de nuevo.
+        </div>
+
+        <div class="privacy">
+            🔒 <strong>Tu privacidad importa.</strong>
+            No incluyas nombres, teléfonos, contraseñas
+            ni información personal. Mantén siempre
+            un lenguaje respetuoso.
+        </div>
+
+    </section>
+
+    <section class="info">
+
+        <article>
+            <span>📬</span>
+            <h3>Escuchamos tus ideas</h3>
+            <p>
+                Todas las propuestas podrán ser revisadas
+                por el Consejo Escolar.
+            </p>
+        </article>
+
+        <article>
+            <span>🏫</span>
+            <h3>Mejoramos juntos</h3>
+            <p>
+                Las propuestas que correspondan podrán
+                trasladarse al Ayuntamiento.
+            </p>
+        </article>
+
+    </section>
+
+</main>
+
+<footer>
+    <p><strong>Consejo Escolar</strong></p>
+    <p>Un colegio mejor empieza escuchando a todos.</p>
+</footer>
+
+<script>
+const form = document.getElementById("suggestionForm");
+const message = document.getElementById("message");
+const count = document.getElementById("count");
+const success = document.getElementById("success");
+const error = document.getElementById("error");
+
+message.addEventListener("input", () => {
+    count.textContent = message.value.length;
+});
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const category = document.getElementById("category").value;
+    const title = document.getElementById("title").value.trim();
+    const description = message.value.trim();
+
+    if (!category || !title || !description) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    // IMPORTANTE:
+    // Aquí se conectará el servicio que recibirá
+    // y almacenará las sugerencias.
+    //
+    // GitHub Pages no puede guardar formularios
+    // directamente en un servidor.
+
+    success.style.display = "block";
+    error.style.display = "none";
+
+    form.reset();
+    count.textContent = "0";
+
+    success.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+</script>
+
+</body>
+</html>
