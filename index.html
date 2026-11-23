@@ -303,7 +303,7 @@ function configurationReady() {
     if (!window.supabase || !window.supabase.createClient) {
         throw new Error("No se ha podido cargar la librería de conexión. Comprueba tu conexión a Internet.");
     }
-    if (!SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY === "sb_publishable_MFwklc6wpsOrvTgyc6f82A_uPZ_Rxq6") {
+if (!SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY === "PEGA_AQUI_TU_CLAVE_PUBLICABLE") {
         throw new Error("Falta configurar la clave publicable de Supabase en el archivo index.html.");
     }
     if (!supabaseClient) {
